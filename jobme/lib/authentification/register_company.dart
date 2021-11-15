@@ -13,9 +13,9 @@ class CompanyRegisterPage extends StatefulWidget {
 }
 
 class _MyRegisterPageState extends State<CompanyRegisterPage> {
-  var userController = TextEditingController();
-  var passwordController = TextEditingController();
-  var nameController = TextEditingController();
+  TextEditingController userController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   bool isPhone = false;
   String mailOrPhone = 'Email';
 

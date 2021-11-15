@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jobme/main.dart';
 import 'package:jobme/company/job_remove.dart';
 import 'package:jobme/authentification/login.dart';
 import 'package:jobme/parameters/change_password.dart';

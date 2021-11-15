@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:jobme/authentification/login.dart';
-import 'package:jobme/company/job_adding.dart';
 import 'package:jobme/offers/offers_details.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,11 +14,10 @@ class DashboardJobbeur extends StatefulWidget {
 }
 
 class _DashboardJobbeurState extends State<DashboardJobbeur> {
-  final _formKey = GlobalKey<FormState>();
   TextEditingController searchController = TextEditingController();
-  var _alloffers = [];
-  var _filteredoffers = [];
-  var _appliedoffers = [];
+  List _alloffers = [];
+  List _filteredoffers = [];
+  List _appliedoffers = [];
   int _selecteditem = 0;
   int _selecteditemlength = 0;
 
@@ -51,7 +48,7 @@ class _DashboardJobbeurState extends State<DashboardJobbeur> {
         headers: {'Authorization': 'Bearer $token'},
       );
       print(response.body);
-      var jsonData = jsonDecode(response.body) as List;
+      List jsonData = jsonDecode(response.body);
       setState(() {
         _appliedoffers = jsonData;
       });
@@ -72,8 +69,6 @@ class _DashboardJobbeurState extends State<DashboardJobbeur> {
 
   @override
   Widget build(BuildContext context) {
-    final dw = MediaQuery.of(context).size.width / 100;
-    final dh = MediaQuery.of(context).size.height / 100;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -247,149 +242,3 @@ class _DashboardJobbeurState extends State<DashboardJobbeur> {
     );
   }
 }
-
-
-/*body: ListView(children: <Widget>[
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: dw * 4, vertical: dh * 2),
-          child: Column(
-            children: [
-              Form(
-                key: _formKey,
-                child: SizedBox(
-                  height: dh * 4,
-                  child: TypeAheadFormField(
-                    suggestionsCallback: (pattern) => jobType.where(
-                      (item) =>
-                          item.toLowerCase().contains(pattern.toLowerCase()),
-                    ),
-                    itemBuilder: (_, String item) =>
-                        ListTile(title: Text(item)),
-                    onSuggestionSelected: (String val) {
-                      nameController.text = val;
-                    },
-                    getImmediateSuggestions: true,
-                    hideSuggestionsOnKeyboardHide: true,
-                    hideOnEmpty: false,
-                    noItemsFoundBuilder: (context) => const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text('No item found'),
-                    ),
-                    textFieldConfiguration: TextFieldConfiguration(
-                      textAlign: TextAlign.start,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'Search...',
-                        border: OutlineInputBorder(),
-                      ),
-                      controller: nameController,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        ListView.builder(
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: _selecteditemlength,
-          itemBuilder: (context, i) {
-            if (_selecteditem == 2) {
-              final post = _appliedoffers[i];
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "Poste: ${post["title"]}\n",
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "Description: ${post["description"]}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              final post = _alloffers[i];
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "Poste: ${post["title"]}\n",
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            OfferDetail(detail: post)));
-                              },
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "Company: ${post["company"]["name"]}\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.shade900,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "Description: ${post["description"]}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }
-          },
-        ),
-      ]),*/

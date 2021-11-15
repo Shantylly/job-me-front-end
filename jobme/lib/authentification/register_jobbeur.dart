@@ -13,10 +13,10 @@ class JobbeurRegisterPage extends StatefulWidget {
 }
 
 class _MyRegisterPageState extends State<JobbeurRegisterPage> {
-  var userController = TextEditingController();
-  var passwordController = TextEditingController();
-  var firstnameController = TextEditingController();
-  var lastnameController = TextEditingController();
+  TextEditingController userController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
   bool isPhone = false;
   String mailOrPhone = 'Email';
 

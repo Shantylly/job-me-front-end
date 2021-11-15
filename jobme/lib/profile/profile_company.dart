@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:jobme/profile/user_class.dart';
 import 'package:jobme/authentification/login.dart';
-import 'package:jobme/parameters/main_parameters.dart';
 import 'package:http/http.dart' as http;
 import 'package:jobme/utils/star_display.dart';
 import 'package:jobme/utils/space.dart';

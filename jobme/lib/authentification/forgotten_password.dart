@@ -9,7 +9,7 @@ class PasswordForgotten extends StatefulWidget {
 }
 
 class _PasswordForgottenState extends State<PasswordForgotten> {
-  final TextEditingController mailController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
   bool isPhone = false;
   String mailOrPhone = 'Email';
 
@@ -53,7 +53,7 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, '/home');
           },
           icon: const Icon(
             Icons.arrow_back,

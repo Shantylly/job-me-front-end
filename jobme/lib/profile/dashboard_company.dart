@@ -17,8 +17,8 @@ class DashboardCompany extends StatefulWidget {
 
 class _DashboardCompanyState extends State<DashboardCompany> {
   TextEditingController searchController = TextEditingController();
-  var _alljobbeurs = [];
-  var _filteredjobbeurs = [];
+  List _alljobbeurs = [];
+  List _filteredjobbeurs = [];
 
   getJobbeurData() async {
     try {
@@ -27,7 +27,7 @@ class _DashboardCompanyState extends State<DashboardCompany> {
         headers: {'Authorization': 'Bearer $token'},
       );
       print(response.body);
-      var jsonData = jsonDecode(response.body) as List;
+      List jsonData = jsonDecode(response.body);
       setState(() {
         _alljobbeurs = jsonData;
       });
@@ -200,79 +200,3 @@ class _DashboardCompanyState extends State<DashboardCompany> {
     );
   }
 }
-
-/*body: ListView(children: <Widget>[
-        ListView.builder(
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: _alljobbeurs.length,
-          itemBuilder: (context, i) {
-            final jobbeur = _alljobbeurs[i];
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(10.0),
-                  padding: const EdgeInsets.all(3.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 2.0),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text:
-                              "Jobbeur: ${jobbeur["firstName"]} ${jobbeur["lastName"]}\n",
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          JobbeurDetail(detail: jobbeur)));
-                            },
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(
-                          text: "Email: ${jobbeur["email"]}\n",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey.shade900,
-                          ),
-                        ),
-                        TextSpan(
-                          text: "Phone: ${jobbeur["phone"]}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ]),
-    );
-  }
-}*/
-
- /*const Center(
-          child: Text(
-            "Hello company !\nWelcome on your dashboard.",
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-        ));*/

@@ -18,7 +18,7 @@ class RemoveJob extends StatefulWidget {
 }
 
 class _RemoveJobState extends State<RemoveJob> {
-  var _offers = [];
+  List _offers = [];
 
   getOfferData() async {
     try {
@@ -27,7 +27,7 @@ class _RemoveJobState extends State<RemoveJob> {
         headers: {'Authorization': 'Bearer $token'},
       );
       print(response.body);
-      final jsonData = jsonDecode(response.body) as List;
+      List jsonData = jsonDecode(response.body);
       setState(() {
         _offers = jsonData;
       });
