@@ -1,4 +1,8 @@
-# job-me-front-end
-Front end of a web/app to apply jobs offers and postulate for it.
+# Front-end Jobme
 
-! This repositories is an old first try with flutter. Will be updated soon !
+This is a flutter project I made during my internship in a company called "JobMe".
+
+## Getting Started
+
+This project can be started via an emulator on android studio.  
+It isn't connected anymore to the API so it ain't really working but I wanted to keep a trace of my work somewhere.
